@@ -1,0 +1,7 @@
+{
+  "name": "quasar_pokemon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
