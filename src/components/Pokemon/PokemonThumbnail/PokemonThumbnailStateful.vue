@@ -3,19 +3,25 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 import PokemonThumbnailStateless from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateless.vue'
 
-export default {
+export default defineComponent({
   name: 'PokemonThumbnailStateful',
 
   components: {
     PokemonThumbnailStateless
   },
 
+  data: () => ({
+    router: useRouter()
+  }),
+
   methods: {
     goToPokemonDetail() {
-      console.log('GOING_TO_POKEMON_DETAIL...')
+      this.router.push('/detail')
     }
   }
-}
+})
 </script>

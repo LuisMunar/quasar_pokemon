@@ -1,14 +1,19 @@
 <template>
   <ion-page>
-    <ion-content :fullscreen="true">
-      Detail page
-    </ion-content>
+    <detail-component />
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { IonContent, IonPage } from '@ionic/vue';
-</script>
+<script lang="ts">
+import { IonPage } from '@ionic/vue'
+import DetailComponent from '@/components/Details/DetailComponent.vue'
 
-<style scoped>
-</style>
+export default {
+  name: 'DetailPage',
+
+  components: {
+    IonPage,
+    DetailComponent
+  }
+}
+</script>
