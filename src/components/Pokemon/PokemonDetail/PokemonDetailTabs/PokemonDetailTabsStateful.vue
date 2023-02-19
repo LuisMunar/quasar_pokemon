@@ -3,10 +3,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { SegmentCustomEvent } from '@ionic/vue'
 import PokemonDetailTabsStateless from '@/components/Pokemon/PokemonDetail/PokemonDetailTabs/PokemonDetailTabsStateless.vue'
 
-export default {
+export default defineComponent({
   name: 'PokemonDetailTabsStateful',
 
   components: { PokemonDetailTabsStateless },
@@ -20,5 +21,5 @@ export default {
       this.panelSelected = e.target.value
     }
   }
-}
+})
 </script>
