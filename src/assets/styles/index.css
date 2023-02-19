@@ -97,6 +97,11 @@
   line-height: 16px;
 }
 
+/* text tranform */
+.text-transform-capitalize {
+  text-transform: capitalize;
+}
+
 /* paddings */
 .p-1 {
   padding: .5rem;
@@ -232,6 +237,22 @@
   margin-right: 2rem;
 }
 
+.mt-1 {
+  margin-top: .5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
 .mb-1 {
   margin-bottom: .5rem;
 }
@@ -305,6 +326,10 @@
   justify-content: space-between;
 }
 
+.d-direction-col {
+  flex-direction: column;
+}
+
 /* widths */
 .w-full {
   width: 100%;
@@ -316,6 +341,10 @@
 
 .w-8 {
   width: 80%;
+}
+
+.w-4 {
+  width: 40%;
 }
 
 /* icons size */

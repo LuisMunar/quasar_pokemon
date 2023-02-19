@@ -1,21 +1,18 @@
 <template>
-  <home-banner-filter-button-stateless :open-filter-modal="openFilterModal" />
+  <home-banner-filter-button-stateless />
+  <home-banner-filter-modalStateful />
 </template>
 
 <script lang="ts">
 import HomeBannerFilterButtonStateless from '@/components/Home/HomeBanner/HomeBannerFilterButton/HomeBannerFilterButtonStateless.vue'
+import HomeBannerFilterModalStateful from '@/components/Home/HomeBanner/HomeBannerFilterButton/HomeBannerFilterModal/HomeBannerFilterModalStateful.vue'
 
 export default {
   name: 'HomeBannerFilterButtonStateful',
 
   components: {
-    HomeBannerFilterButtonStateless
-  },
-
-  methods: {
-    openFilterModal() {
-      console.log('OPENING_FILTER_MODAL...')
-    }
+    HomeBannerFilterButtonStateless,
+    HomeBannerFilterModalStateful
   }
 }
 </script>

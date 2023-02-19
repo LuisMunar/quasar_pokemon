@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-activatable ripple-parent p-1" @click="openFilterModal()">
+  <div class="ion-activatable ripple-parent p-1" id="openFilterModal">
     <ion-ripple-effect></ion-ripple-effect>
     <img src="@/assets/icons/filter.svg" alt="filter" class="icon-large">
   </div>
@@ -13,13 +13,6 @@ export default {
 
   components: {
     IonRippleEffect
-  },
-
-  props: {
-    openFilterModal: {
-      type: Function,
-      required: true
-    }
   }
 }
 </script>
