@@ -1,5 +1,5 @@
 <template>
-  <home-banner-search-input-stateless :handler-search-input="handlerSearchInput" />
+  <home-banner-search-input-stateless :handler-search-input="handlerSearchInput" :search-pokemon="searchPokemon" />
 </template>
 
 <script lang="ts">
@@ -16,6 +16,10 @@ export default {
   methods: {
     handlerSearchInput(e: InputEventInterface) {
       console.log('HANDLENING... => ', e.target.value)
+    },
+
+    searchPokemon(e: InputEventInterface) {
+      console.log('SEARCHING... => ', e.target.value)
     }
   }
 }
