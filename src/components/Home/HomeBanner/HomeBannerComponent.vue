@@ -29,11 +29,6 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 31vh;
-}
-
-ion-item {
-  --ion-color-base: none !important;
-  --ion-color-shade: none !important;
+  height: 234px;
 }
 </style>
