@@ -8,13 +8,18 @@
     <pokemon-thumbnail-stateful />
     <pokemon-thumbnail-stateful />
   </ion-content>
+
+  <ion-footer>
+    <home-paginator-stateful />
+  </ion-footer>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader } from '@ionic/vue'
+import { IonContent, IonHeader, IonFooter } from '@ionic/vue'
 
 import HomeBannerComponent from '@/components/Home/HomeBanner/HomeBannerComponent.vue'
 import PokemonThumbnailStateful from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateful.vue'
+import HomePaginatorStateful from '@/components/Home/HomePaginator/HomePaginatorStateful.vue'
 
 export default {
   name: 'HomeComponent',
@@ -22,8 +27,16 @@ export default {
   components: {
     IonContent,
     IonHeader,
+    IonFooter,
     HomeBannerComponent,
-    PokemonThumbnailStateful
+    PokemonThumbnailStateful,
+    HomePaginatorStateful
   }
 }
 </script>
+
+<style scoped>
+ion-content {
+  --background: #D7D7D7;
+}
+</style>
