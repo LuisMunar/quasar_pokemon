@@ -40,7 +40,7 @@
       </ion-chip>
 
       <div class="py-2 px-3 w-full d-flex d-align-items-center d-justify-content-space-between home-banner-filter-modal-content-buttons">
-        <ion-button class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons" color="tertiary" @click="cancelFilterSearcher()">Candel</ion-button>
+        <ion-button class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons" color="tertiary" @click="cancelFilterSearcher()">Cancel</ion-button>
         <ion-button class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons" color="primary">Filter</ion-button>
       </div>
     </div>
