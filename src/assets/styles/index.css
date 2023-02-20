@@ -334,6 +334,10 @@
   flex-direction: column;
 }
 
+.d-wrap {
+  flex-wrap: wrap;
+}
+
 /* widths */
 .w-full {
   width: 100%;
@@ -367,5 +371,4 @@
   font-size: 16px;
   margin: 0;
   padding: 0;
-  color: #3B3B3B;
 }
