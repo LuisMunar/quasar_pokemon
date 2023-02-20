@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router';
 
@@ -25,7 +26,10 @@ import './theme/variables.css';
 import './assets/styles/fonts.css';
 import './assets/styles/index.css';
 
+const pinia = createPinia()
+
 const app = createApp(App)
+  .use(pinia)
   .use(IonicVue)
   .use(router);
   

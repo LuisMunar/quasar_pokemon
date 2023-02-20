@@ -4,9 +4,7 @@
   </ion-header>
 
   <ion-content :fullscreen="true">
-    <pokemon-thumbnail-stateful />
-    <pokemon-thumbnail-stateful />
-    <pokemon-thumbnail-stateful />
+    <home-pokemon-thumbnail-stateful />
   </ion-content>
 
   <ion-footer>
@@ -18,7 +16,7 @@
 import { IonContent, IonHeader, IonFooter } from '@ionic/vue'
 
 import HomeBannerComponent from '@/components/Home/HomeBanner/HomeBannerComponent.vue'
-import PokemonThumbnailStateful from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateful.vue'
+import HomePokemonThumbnailStateful from '@/components/Home/HomePokemonThumbnail/HomePokemonThumbnailStateful.vue'
 import HomePaginatorStateful from '@/components/Home/HomePaginator/HomePaginatorStateful.vue'
 
 export default {
@@ -29,7 +27,7 @@ export default {
     IonHeader,
     IonFooter,
     HomeBannerComponent,
-    PokemonThumbnailStateful,
+    HomePokemonThumbnailStateful,
     HomePaginatorStateful
   }
 }
