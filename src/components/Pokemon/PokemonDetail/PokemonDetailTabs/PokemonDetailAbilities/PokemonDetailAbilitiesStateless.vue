@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .pokemon-detail-abilities-chip {
-  padding: 5px 10px;
+  padding: 2px 10px;
   font-size: 14px;
   border-radius: 4px;
 }
