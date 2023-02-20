@@ -1,10 +1,11 @@
 <template>
-  <pokemon-thumbnail-stateless :go-to-pokemon-detail="goToPokemonDetail" />
+  <pokemon-thumbnail-stateless :go-to-pokemon-detail="goToPokemonDetail" :pokemon="pokemon" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+
 import PokemonThumbnailStateless from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateless.vue'
 
 export default defineComponent({
@@ -12,6 +13,13 @@ export default defineComponent({
 
   components: {
     PokemonThumbnailStateless
+  },
+
+  props: {
+    pokemon: {
+      type: Object,
+      required: true
+    }
   },
 
   data: () => ({

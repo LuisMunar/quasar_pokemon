@@ -1,6 +1,8 @@
-import { getPokemonRespository, getPokemonsRepository } from '@/repositories/PokemonRepository'
+import { PromiseAllSettledInterface } from '@/interfaces/nativeEvents'
+import { PokemonsInterface } from '@/interfaces/pokemon'
+import { getPokemonsRepository, getPokemonRespository } from '@/repositories/PokemonRepository'
 
-export const getPokemonsService = async (): Promise<any> => {
+export const getPokemonsService = async (): Promise<PokemonsInterface[]> => {
   const { results } = await getPokemonsRepository()
 
   if(results.length <= 0) {
@@ -8,19 +10,18 @@ export const getPokemonsService = async (): Promise<any> => {
   }
 
   const primisesArray = []
-
   for (let i=0; i<results.length; i++) {
     const { url } = results[i]
     primisesArray.push(getPokemonRespository(url))
   }
+  const pokemonsResult = await Promise.allSettled(primisesArray) as PromiseAllSettledInterface<PokemonsInterface>[]
 
-  const pokemonsResult = await Promise.allSettled(primisesArray) as any
+  return pokemonsResult.map((i) => {
+    const pokemonInitialData = results.find((j) => j.name === i.value.name)
 
-  return pokemonsResult.map((p: any) => p.value)
-}
-
-export const getPokemonService = (): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    resolve(1245)
+    return {
+      ...i.value,
+      url: pokemonInitialData ? pokemonInitialData.url : ''
+    }
   })
 }

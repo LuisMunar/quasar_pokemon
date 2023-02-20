@@ -1,7 +1,9 @@
 <template>
-  <pokemon-thumbnail-stateful />
-  <pokemon-thumbnail-stateful />
-  <pokemon-thumbnail-stateful />
+  <pokemon-thumbnail-stateful
+    v-for="(pokemon, i) in pokemonState.getPokemons"
+    :key="i"
+    :pokemon="pokemon"
+  />
 </template>
 
 <script lang="ts">
@@ -9,7 +11,6 @@ import { defineComponent } from 'vue'
 import { usePokemonStore } from '@/store/pokemon'
 
 import PokemonThumbnailStateful from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateful.vue'
-import { getPokemonsService } from '@/services/PokemonService'
 
 export default defineComponent({
   name: 'HomeBannerComponent',
@@ -22,24 +23,11 @@ export default defineComponent({
     pokemonState: usePokemonStore()
   }),
 
-  methods: {
-    getPokemons() {
-      this.pokemonState.setPokemons([
-        {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        },
-        {
-          "name": "ivysaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/2/"
-        }
-      ])
-    }
-  },
-
-  async mounted() {
-    await getPokemonsService()
-    this.getPokemons()
+  mounted() {
+    this.pokemonState.setPokemons()
+    setTimeout(() => {
+      console.log('=> ', this.pokemonState.getPokemons)
+    }, 5000);
   }
 })
 </script>
