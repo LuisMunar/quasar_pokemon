@@ -34,7 +34,6 @@ export default defineComponent({
     getPaginatorQuantityButtons(quantityPokemons: number): void {
       // this.paginatorQuantityButtons = convertNumberToArray(roundToLargestNumber(quantityPokemons/5))
       this.paginatorQuantityButtons = convertNumberToArray(5)
-      console.log('=> ', this.paginatorQuantityButtons.length)
     }
   },
 
