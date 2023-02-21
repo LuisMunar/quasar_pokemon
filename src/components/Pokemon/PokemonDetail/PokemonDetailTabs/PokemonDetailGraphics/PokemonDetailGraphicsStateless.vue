@@ -10,9 +10,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { Bar } from 'vue-chartjs'
 
-export default {
+export default defineComponent({
   name: 'PokemonDetailGraphicsStateless',
 
   components: {
@@ -29,5 +30,5 @@ export default {
       required: true
     }
   }
-}
+})
 </script>

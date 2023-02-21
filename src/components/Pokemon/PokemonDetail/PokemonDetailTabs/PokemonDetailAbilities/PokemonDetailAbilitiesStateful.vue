@@ -1,13 +1,20 @@
 <template>
-  <pokemon-detail-abilities-stateless />
+  <pokemon-detail-abilities-stateless :pokemon="pokemonState.pokemon!" />
 </template>
 
 <script lang="ts">
-import PokemonDetailAbilitiesStateless from '@/components/Pokemon/PokemonDetail/PokemonDetailTabs/PokemonDetailAbilities/PokemonDetailAbilitiesStateless.vue'
+import { defineComponent } from 'vue'
 
-export default {
+import PokemonDetailAbilitiesStateless from '@/components/Pokemon/PokemonDetail/PokemonDetailTabs/PokemonDetailAbilities/PokemonDetailAbilitiesStateless.vue'
+import { usePokemonStore } from '@/store/pokemon'
+
+export default defineComponent({
   name: 'PokemonDetailAbilitiesStateful',
 
-  components: { PokemonDetailAbilitiesStateless }
-}
+  components: { PokemonDetailAbilitiesStateless },
+
+  data: () => ({
+    pokemonState: usePokemonStore()
+  })
+})
 </script>

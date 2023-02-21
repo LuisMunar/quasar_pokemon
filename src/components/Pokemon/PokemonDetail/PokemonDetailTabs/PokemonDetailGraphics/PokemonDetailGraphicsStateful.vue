@@ -1,22 +1,25 @@
 <template>
-  <pokemon-detail-graphics-stateless :chart-options="chartOptions" :chart-data="chartData" />
+  <pokemon-detail-graphics-stateless :chart-options="chartOptions" :chart-data="getChartData" />
 </template>
 
 <script lang="ts">
 import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { defineComponent } from 'vue'
 
 import PokemonDetailGraphicsStateless from '@/components/Pokemon/PokemonDetail/PokemonDetailTabs/PokemonDetailGraphics/PokemonDetailGraphicsStateless.vue'
+import { usePokemonStore } from '@/store/pokemon'
 
 ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
 ChartJS.defaults.font.size = 12
 ChartJS.defaults.font.family = 'Roboto-Medium'
 
-export default {
+export default defineComponent({
   name: 'PokemonDetailGraphicsStateful',
 
   components: { PokemonDetailGraphicsStateless },
 
   data: () => ({
+    pokemonState: usePokemonStore(),
     chartOptions: {
       responsive: true,
       indexAxis: 'y',
@@ -43,6 +46,21 @@ export default {
         }
       ]
     }
-  })
-}
+  }),
+
+  computed: {
+    getChartData() {
+      return {
+        ...this.chartData,
+        labels: this.pokemonState.pokemon?.stats.map(p => p.stat.name),
+        datasets: this.chartData.datasets.map(d => {
+          return {
+            ...d,
+            data: this.pokemonState.pokemon?.stats.map(p => p.base_stat)
+          }
+        })
+      }
+    }
+  }
+})
 </script>

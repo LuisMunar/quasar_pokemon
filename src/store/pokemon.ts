@@ -13,6 +13,7 @@ interface PokemonStateInterface {
   pokemons: PokemonsInterface[]
   moves: MoveInterface[]
   experiences: number[]
+  pokemon?: PokemonsInterface
 }
 
 export const usePokemonStore = defineStore('pokemon', {
@@ -24,7 +25,8 @@ export const usePokemonStore = defineStore('pokemon', {
     nexPage: 0,
     pokemons: [],
     moves: [],
-    experiences: convertNumberToArray(500)
+    experiences: convertNumberToArray(500),
+    pokemon: undefined
   }),
 
   getters: {
@@ -92,6 +94,11 @@ export const usePokemonStore = defineStore('pokemon', {
       this.nexPage = getOffsetParamFormPakemonUrl(next)
       this.pokemons = [...results].filter(p => p.base_experience > (experience !== 'all' ? experience : 0))
       this.quantityPokemons = this.pokemons.length
+    },
+
+    setPokemon(payload: PokemonsInterface) {
+      this.pokemon = payload
+      console.log('TWO => ', this.pokemon)
     }
   }
 })

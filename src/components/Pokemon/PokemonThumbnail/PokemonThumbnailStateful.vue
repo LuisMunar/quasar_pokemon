@@ -7,6 +7,7 @@ import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 import PokemonThumbnailStateless from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateless.vue'
+import { usePokemonStore } from '@/store/pokemon'
 
 export default defineComponent({
   name: 'PokemonThumbnailStateful',
@@ -20,14 +21,16 @@ export default defineComponent({
       type: Object,
       required: true
     }
-  },
+  } as { pokemon: any },
 
   data: () => ({
-    router: useRouter()
+    router: useRouter(),
+    pokemonState: usePokemonStore()
   }),
 
   methods: {
     goToPokemonDetail() {
+      this.pokemonState.setPokemon(this.pokemon)
       this.router.push('/detail')
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <ion-card class="w-9 my-3 mx-auto pokemon-thumbnail" @click="goToPokemonDetail()">
     <div class="d-flex d-align-items-center d-justify-content-center pokemon-thumbnail-content-image">
-      <img alt="pokemon" :src="pokemon.sprites.other.home.front_default" class="pokemon-thumbnail-image" />
+      <img :src="pokemon.sprites.other.home.front_default" class="pokemon-thumbnail-image" :alt="pokemon.name" />
     </div>
 
     <ion-card-header class="p-2">
@@ -53,10 +53,6 @@ export default {
 
 .pokemon-thumbnail-content-image {
   background-color: #ECECF2;
-}
-
-.pokemon-thumbnail-image {
-  width: 50vw;
 }
 
 .pokemon-thumbnail-icon {

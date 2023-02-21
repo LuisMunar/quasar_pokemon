@@ -5,18 +5,21 @@
     </div>
 
     <div class="d-flex d-align-items-center d-justify-content-center">
-      <h1 class="mr-1 text-headline">Bulbasor</h1><span class="text-subtitle-two">#01</span>
+      <h1 class="text-transform-capitalize mr-1 text-headline">{{ pokemon.name }}</h1><span class="text-subtitle-two"># {{ pokemon.id }}</span>
     </div>
 
-    <img alt="pokemon" src="@/assets/images/pokemons/bulbasaur.png" />
+    <img :src="pokemon.sprites.other.home.front_default" :alt="pokemon.name" class="pokemon-thumbnail-image" />
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent, type PropType } from 'vue'
 import { IonIcon } from '@ionic/vue'
 import { arrowBackOutline } from 'ionicons/icons'
 
-export default {
+import { PokemonsInterface } from '@/interfaces/pokemon'
+
+export default defineComponent({
   name: 'PokemonDetailBannerStateless',
 
   components: {
@@ -27,13 +30,17 @@ export default {
     backToHomePage: {
       type: Function,
       required: true
+    },
+    pokemon: {
+      type: Object as PropType<PokemonsInterface>,
+      required: true
     }
   },
 
   data: () => ({
     arrowBackOutline
   })
-}
+})
 </script>
 
 <style scoped>
