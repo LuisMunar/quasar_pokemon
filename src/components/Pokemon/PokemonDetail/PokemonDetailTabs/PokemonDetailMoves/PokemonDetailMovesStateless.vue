@@ -3,103 +3,31 @@
 
   <div class="d-flex d-align-items-center d-justify-content-space-between d-wrap">
 
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
+    <div
+      v-for="(move, i) in pokemon.moves"
+      :key="move.move.name"
+      :class="`d-flex d-align-items-center d-justify-content-centr d-direction-col ${ i%2===0 ? 'green' : 'purple' } pokemon-detail-moves-move`"
+    >
+      <img :src="require(`@/assets/icons/${ i%2===0 ? 'move_one' : 'move_two' }.svg`)" :alt="move.move.name" class="background-light pokemon-detail-moves-move-image mb-1">
+      <span class="text-caption-regular text-ellipsis color-light">{{ move.move.name }}</span>
     </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col green pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_one.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Seed bomb</span>
-    </div>
-
-    <div class="d-flex d-align-items-center d-justify-content-centr d-direction-col purple pokemon-detail-moves-move">
-      <img src="@/assets/icons/move_two.svg" alt="move" class="background-light pokemon-detail-moves-move-image mb-1">
-      <span class="text-caption-regular color-light">Sludge boom</span>
-    </div>
-
   </div>
 </template>
 
 <script lang="ts">
-export default {
-  name: 'PokemonDetailMovesStateless'
-}
+import { defineComponent, type PropType } from 'vue'
+import { PokemonsInterface } from '@/interfaces/pokemon'
+
+export default defineComponent({
+  name: 'PokemonDetailMovesStateless',
+
+  props: {
+    pokemon: {
+      type: Object as PropType<PokemonsInterface>,
+      required: true
+    }
+  },
+})
 </script>
 
 <style scoped>
