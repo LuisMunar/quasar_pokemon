@@ -1,8 +1,10 @@
 <template>
   <home-paginator-stateless
-    :paginator-quantity-buttons="paginatorQuantityButtons"
+    :paginator-quantity-buttons="getpaginatorQuantityButtons"
     :page-selected="pokemonState.pageSelected"
     :set-page-selected="pokemonState.setPageSelected"
+    :previous-page="pokemonState.previousPage"
+    :next-page="pokemonState.nexPage"
   />
 </template>
 
@@ -11,12 +13,7 @@ import { defineComponent } from 'vue'
 
 import HomePaginatorStateless from '@/components/Home/HomePaginator/HomePaginatorStateless.vue'
 import { usePokemonStore } from '@/store/pokemon'
-import { roundToLargestNumber, convertNumberToArray } from '@/utils'
-
-interface HomePaginatorDataInerface {
-  pokemonState: any
-  paginatorQuantityButtons: number[]
-}
+import { roundToLargestNumber } from '@/utils'
 
 export default defineComponent({
   name: 'HomePaginatorStateful',
@@ -25,20 +22,38 @@ export default defineComponent({
     HomePaginatorStateless
   },
 
-  data: (): HomePaginatorDataInerface => ({
-    pokemonState: usePokemonStore(),
-    paginatorQuantityButtons: []
+  data: () => ({
+    pokemonState: usePokemonStore()
   }),
 
-  methods: {
-    getPaginatorQuantityButtons(quantityPokemons: number): void {
-      // this.paginatorQuantityButtons = convertNumberToArray(roundToLargestNumber(quantityPokemons/5))
-      this.paginatorQuantityButtons = convertNumberToArray(5)
-    }
-  },
+  computed: {
+    getpaginatorQuantityButtons(): number[] {
+      const quantityPagesToShow = roundToLargestNumber(this.pokemonState.getQuantityPokemons/5)
 
-  mounted() {
-    this.getPaginatorQuantityButtons(this.pokemonState.getQuantityPokemons)
+      if(
+        this.pokemonState.pageSelected < quantityPagesToShow &&
+        (this.pokemonState.pageSelected === 0 || this.pokemonState.pageSelected === 1)
+      ) {
+        return [0, 1, 2]
+      }
+
+      if(
+        this.pokemonState.pageSelected < quantityPagesToShow &&
+        (this.pokemonState.pageSelected > 1 && this.pokemonState.pageSelected < quantityPagesToShow-1)
+      ) {
+        return [
+          this.pokemonState.pageSelected-1,
+          this.pokemonState.pageSelected,
+          this.pokemonState.pageSelected+1
+        ]
+      }
+
+      return [
+        quantityPagesToShow-3,
+        quantityPagesToShow-2,
+        quantityPagesToShow-1
+      ]
+    }
   }
 })
 </script>
