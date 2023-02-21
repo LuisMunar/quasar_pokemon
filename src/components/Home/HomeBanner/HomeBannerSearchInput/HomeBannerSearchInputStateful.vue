@@ -1,5 +1,8 @@
 <template>
-  <home-banner-search-input-stateless :search-pokemon="searchPokemon" />
+  <home-banner-search-input-stateless
+    :handler-input-search-pokemon="handlerInputSearchPokemon"
+    :search-pokemon="searchPokemon"
+  />
 </template>
 
 <script lang="ts">
@@ -17,13 +20,17 @@ export default defineComponent({
   },
 
   data: () => ({
-    pokemonState: usePokemonStore()
+    pokemonState: usePokemonStore(),
+    pokemonName: ''
   }),
 
   methods: {
-    searchPokemon(e: InputEventInterface) {
-      const pokemonName = e.target.value
-      this.pokemonState.setPokemonByName(pokemonName)
+    handlerInputSearchPokemon(e: InputEventInterface) {
+      this.pokemonName = e.target.value
+    },
+
+    searchPokemon() {
+      this.pokemonState.setPokemonByName(this.pokemonName)
     }
   }
 })

@@ -61,7 +61,7 @@ export const usePokemonStore = defineStore('pokemon', {
     },
 
     async setPokemonByName(pokemonName: string) {
-      if(pokemonName === '') {
+      if(pokemonName === '' || !pokemonName) {
         this.pageSelected = 0
         this.setPokemons()
         return

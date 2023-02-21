@@ -1,23 +1,29 @@
 <template>
   <ion-item color="primary" class="d-flex d-align-items-center d-justify-content-center">
     <ion-label position="floating">Search pokemon</ion-label>
-    <ion-input @keyup.enter="searchPokemon($event)"></ion-input>
-    <ion-icon :icon="search" size="large" slot="end" color="light"></ion-icon>
+    <ion-input @input="handlerInputSearchPokemon($event)" @keyup.enter="searchPokemon()"></ion-input>
+    <ion-button fill="clear" slot="end" @click="searchPokemon()">
+      <ion-icon :icon="search" size="large" color="light"></ion-icon>
+    </ion-button>
   </ion-item>
 </template>
 
 <script lang="ts">
-import { IonItem, IonLabel, IonInput, IonIcon } from '@ionic/vue'
+import { IonItem, IonLabel, IonInput, IonButton, IonIcon } from '@ionic/vue'
 import { search } from 'ionicons/icons'
 
 export default {
   name: 'HomeBannerSearchInputStateless',
 
   components: {
-    IonItem, IonLabel, IonInput, IonIcon
+    IonItem, IonLabel, IonInput, IonButton, IonIcon
   },
 
   props: {
+    handlerInputSearchPokemon: {
+      type: Function,
+      required: true
+    },
     searchPokemon: {
       type: Function,
       required: true
