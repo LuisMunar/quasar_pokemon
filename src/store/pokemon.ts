@@ -98,7 +98,6 @@ export const usePokemonStore = defineStore('pokemon', {
 
     setPokemon(payload: PokemonsInterface) {
       this.pokemon = payload
-      console.log('TWO => ', this.pokemon)
     }
   }
 })
