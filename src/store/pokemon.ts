@@ -14,6 +14,7 @@ interface PokemonStateInterface {
   moves: MoveInterface[]
   experiences: number[]
   pokemon?: PokemonsInterface
+  loadingPokemons: boolean
 }
 
 export const usePokemonStore = defineStore('pokemon', {
@@ -26,7 +27,8 @@ export const usePokemonStore = defineStore('pokemon', {
     pokemons: [],
     moves: [],
     experiences: convertNumberToArray(500),
-    pokemon: undefined
+    pokemon: undefined,
+    loadingPokemons: false
   }),
 
   getters: {
@@ -49,12 +51,14 @@ export const usePokemonStore = defineStore('pokemon', {
 
   actions: {
     async setPokemons(pageNumber = 0) {
+      this.loadingPokemons = true
       const { count, results, previous, next } = await getPokemonsService(pageNumber)
       this.showPaginator = count>0
       this.quantityPokemons = count
       this.previousPage = getOffsetParamFormPakemonUrl(previous)
       this.nexPage = getOffsetParamFormPakemonUrl(next)
       this.pokemons = [...results]
+      this.loadingPokemons = false
     },
 
     setPageSelected(payload: number) {
@@ -69,12 +73,14 @@ export const usePokemonStore = defineStore('pokemon', {
         return
       }
 
+      this.loadingPokemons = true
       const { count, results, previous, next } = await getPokemonByNameService(pokemonName)
       this.showPaginator = false
       this.quantityPokemons = count
       this.previousPage = getOffsetParamFormPakemonUrl(previous)
       this.nexPage = getOffsetParamFormPakemonUrl(next)
       this.pokemons = [...results]
+      this.loadingPokemons = false
     },
 
     async setMoves() {
@@ -88,12 +94,14 @@ export const usePokemonStore = defineStore('pokemon', {
         return
       }
 
+      this.loadingPokemons = true
       const { previous, next, results } = await getPokemonsByMoves(movesUrl)
       this.showPaginator = false
       this.previousPage = getOffsetParamFormPakemonUrl(previous)
       this.nexPage = getOffsetParamFormPakemonUrl(next)
       this.pokemons = [...results].filter(p => p.base_experience > (experience !== 'all' ? experience : 0))
       this.quantityPokemons = this.pokemons.length
+      this.loadingPokemons = false
     },
 
     setPokemon(payload: PokemonsInterface) {

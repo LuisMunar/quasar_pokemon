@@ -4,12 +4,6 @@
   </ion-header>
 
   <ion-content>
-    <ion-card class="w-9 my-3 mx-auto home-component">
-      <ion-card-header class="p-2">
-        <ion-card-title class="text-subtitle-one text-transform-capitalize">{{ pokemonState.quantityPokemons }} results</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-
     <home-pokemon-thumbnail-stateful />
   </ion-content>
 
@@ -19,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonFooter, IonCard, IonCardHeader, IonCardTitle } from '@ionic/vue'
+import { IonContent, IonHeader, IonFooter } from '@ionic/vue'
 import { defineComponent } from 'vue'
 
 import HomeBannerComponent from '@/components/Home/HomeBanner/HomeBannerComponent.vue'
@@ -36,10 +30,7 @@ export default defineComponent({
     IonFooter,
     HomeBannerComponent,
     HomePokemonThumbnailStateful,
-    HomePaginatorStateful,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle
+    HomePaginatorStateful
   },
 
   data: () => ({
@@ -49,9 +40,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.home-component {
-  border-radius: 8px;
-}
 ion-content {
   --background: #D7D7D7;
 }
