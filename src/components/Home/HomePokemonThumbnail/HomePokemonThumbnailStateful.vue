@@ -8,9 +8,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { usePokemonStore } from '@/store/pokemon'
 
 import PokemonThumbnailStateful from '@/components/Pokemon/PokemonThumbnail/PokemonThumbnailStateful.vue'
+import { usePokemonStore } from '@/store/pokemon'
 
 export default defineComponent({
   name: 'HomeBannerComponent',
@@ -25,9 +25,6 @@ export default defineComponent({
 
   mounted() {
     this.pokemonState.setPokemons()
-    setTimeout(() => {
-      console.log('=> ', this.pokemonState.getPokemons)
-    }, 5000);
   }
 })
 </script>

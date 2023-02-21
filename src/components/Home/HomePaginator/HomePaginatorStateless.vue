@@ -3,11 +3,14 @@
     <ion-button fill="clear">
       <ion-icon :icon="chevronBackOutline" size="large" color="primary"></ion-icon>
     </ion-button>
-    <ion-button fill="clear">1</ion-button>
-    <ion-button fill="clear">2</ion-button>
-    <ion-button fill="solid">3</ion-button>
-    <ion-button fill="clear">4</ion-button>
-    <ion-button fill="clear">5</ion-button>
+    <ion-button
+      v-for="(_, i) in paginatorQuantityButtons"
+      :key="i"
+      :fill="pageSelected === i ? 'solid' : 'clear'"
+      @click="setPageSelected(i)"
+    >
+      {{ i+1 }}
+    </ion-button>
     <ion-button fill="clear">
       <ion-icon :icon="chevronForwardOutline" size="large" color="primary"></ion-icon>
     </ion-button>
@@ -23,12 +26,25 @@ export default {
 
   components: { IonIcon, IonButton },
 
-  data() {
-    return {
-      chevronBackOutline,
-      chevronForwardOutline
+  props: {
+    paginatorQuantityButtons: {
+      type: Array,
+      required: true
+    },
+    pageSelected: {
+      type: Number,
+      required: true
+    },
+    setPageSelected: {
+      type: Function,
+      required: true
     }
-  }
+  },
+
+  data: () => ({
+    chevronBackOutline,
+    chevronForwardOutline
+  })
 }
 </script>
 
