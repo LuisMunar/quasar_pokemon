@@ -1,5 +1,5 @@
 <template>
-  <div class="background-light p-2 d-flex d-align-items-center d-justify-content-center">
+  <div v-if="quantityPokemons > 1" class="background-light p-2 d-flex d-align-items-center d-justify-content-center">
     <ion-button fill="clear" :disabled="pageSelected < 1" @click="setPageSelected(previousPage)">
       <ion-icon :icon="chevronBackOutline" size="large" color="primary"></ion-icon>
     </ion-button>
@@ -46,6 +46,10 @@ export default {
       required: true
     },
     nextPage: {
+      type: Number,
+      required: true
+    },
+    quantityPokemons: {
       type: Number,
       required: true
     }

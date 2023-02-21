@@ -1,4 +1,4 @@
-import { PokemonsResponseInterface, PokemonsInterface } from '@/interfaces/pokemon'
+import { PokemonsResponseInterface, PokemonsInterface, MovesResponseInterface } from '@/interfaces/pokemon'
 import { getHttpSerivice } from '@/services/httpService'
 
 export const getPokemonsRepository = async (pageNumber: number): Promise<PokemonsResponseInterface> => {
@@ -6,7 +6,23 @@ export const getPokemonsRepository = async (pageNumber: number): Promise<Pokemon
   return data
 }
 
-export const getPokemonRespository = async (pokemonUrl: string): Promise<PokemonsInterface> => {
+export const getPokemonByUrlRespository = async (pokemonUrl: string): Promise<PokemonsInterface> => {
   const { data } = await getHttpSerivice<PokemonsInterface>(pokemonUrl)
+  return data
+}
+
+export const getPokemonByNameRespository = async (pokemomName: string): Promise<PokemonsInterface | null> => {
+  return new Promise((resolve, reject) => {
+    getHttpSerivice<PokemonsInterface>(`https://pokeapi.co/api/v2/pokemon/${ pokemomName }`)
+    .then(({ data }) => resolve(data))
+    .catch((error) => {
+      const { response: { status } } = error
+      status === 404 ? resolve(null) : reject(error)
+    })
+  })
+}
+
+export const getMovesRepository = async (): Promise<MovesResponseInterface> => {
+  const { data } = await getHttpSerivice<MovesResponseInterface>('https://pokeapi.co/api/v2/move')
   return data
 }

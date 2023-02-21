@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-import { PokemonsInterface } from '@/interfaces/pokemon'
-import { getPokemonsService } from '@/services/PokemonService'
+import { MoveInterface, PokemonsInterface } from '@/interfaces/pokemon'
+import { getPokemonsService, getPokemonByNameService, getMovesService } from '@/services/PokemonService'
 import { getOffsetParamFormPakemonUrl } from '@/utils'
 
 interface PokemonStateInterface {
@@ -9,7 +9,8 @@ interface PokemonStateInterface {
   pageSelected: number
   previousPage: number
   nexPage: number
-  pokemons: PokemonsInterface[]
+  pokemons: PokemonsInterface[],
+  moves: MoveInterface[]
 }
 
 export const usePokemonStore = defineStore('pokemon', {
@@ -18,7 +19,8 @@ export const usePokemonStore = defineStore('pokemon', {
     pageSelected: 0,
     previousPage: 0,
     nexPage: 0,
-    pokemons: []
+    pokemons: [],
+    moves: []
   }),
 
   getters: {
@@ -32,6 +34,10 @@ export const usePokemonStore = defineStore('pokemon', {
 
     getPageSelected(state) {
       return state.pageSelected
+    },
+
+    getMoves(state) {
+      return state.moves
     }
   },
 
@@ -47,6 +53,18 @@ export const usePokemonStore = defineStore('pokemon', {
     setPageSelected(payload: number) {
       this.pageSelected = payload
       this.setPokemons(this.pageSelected)
+    },
+
+    async setPokemonByName(pokemonName: string) {
+      const { count, results, previous, next } = await getPokemonByNameService(pokemonName)
+      this.quantityPokemons = count
+      this.previousPage = getOffsetParamFormPakemonUrl(previous)
+      this.nexPage = getOffsetParamFormPakemonUrl(next)
+      this.pokemons = [...results]
+    },
+
+    async setMoves() {
+      this.moves = await getMovesService()
     }
   }
 })

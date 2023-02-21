@@ -6,42 +6,22 @@
       <ion-title class="text-subtitle-one mt-1 mb-4">Filter pokemon list</ion-title>
 
       <ion-item color="tertiary" class="mb-2">
-        <ion-select placeholder="Select movenment number" class="w-full">
-          <ion-select-option value="apples">Apples</ion-select-option>
-          <ion-select-option value="oranges">Oranges</ion-select-option>
-          <ion-select-option value="bananas">Bananas</ion-select-option>
+        <ion-select :value="movement" name="movement" placeholder="Select movenment number" class="w-full" @ionChange="handlerMovenmentNumber($event)">
+          <ion-select-option value="">All</ion-select-option>
+          <ion-select-option v-for="(move, i) in moves" :key="i" :value="move.url">{{ move.name }}</ion-select-option>
         </ion-select>
       </ion-item>
-
-      <ion-item color="tertiary" class="mb-2">
-        <ion-select placeholder="Select experience level" class="w-full">
-          <ion-select-option value="apples">Apples</ion-select-option>
-          <ion-select-option value="oranges">Oranges</ion-select-option>
-          <ion-select-option value="bananas">Bananas</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item color="tertiary" class="mb-2">
-        <ion-select placeholder="Pokemon type" class="w-full">
-          <ion-select-option value="apples">Apples</ion-select-option>
-          <ion-select-option value="oranges">Oranges</ion-select-option>
-          <ion-select-option value="bananas">Bananas</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-chip class="p-2 text-body-regular background-tertiary">
-        <ion-label color="light">Rock</ion-label>
-        <ion-icon :icon="closeOutline" size="large" color="light"></ion-icon>
-      </ion-chip>
-
-      <ion-chip class="p-2 text-body-regular background-tertiary">
-        <ion-label color="light">Fire</ion-label>
-        <ion-icon :icon="closeOutline" size="large" color="light"></ion-icon>
-      </ion-chip>
 
       <div class="py-2 px-3 w-full d-flex d-align-items-center d-justify-content-space-between home-banner-filter-modal-content-buttons">
         <ion-button class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons" color="tertiary" @click="cancelFilterSearcher()">Cancel</ion-button>
-        <ion-button class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons" color="primary">Filter</ion-button>
+        <ion-button
+          class="text-transform-capitalize text-subtitle-two home-banner-filter-modal-buttons"
+          color="primary"
+          :disabled="disabledButton"
+          @click="applyFilter()"
+        >
+          Filter
+        </ion-button>
       </div>
     </div>
   </ion-modal>
@@ -55,9 +35,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
-  IonIcon,
-  IonChip,
-  IonLabel
+  IonIcon
 } from '@ionic/vue'
 import { closeOutline } from 'ionicons/icons'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -73,10 +51,31 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     IonButton,
-    IonIcon,
-    IonChip,
-    IonLabel
+    IonIcon
   },
+
+  props: {
+    handlerMovenmentNumber: {
+      type: Function,
+      required: true
+    },
+    searchPokemonsByFilter: {
+      type: Function,
+      required: true
+    },
+    moves: {
+      type: Array,
+      required: true
+    },
+    movement: {
+      type: String,
+      required: true
+    },
+    disabledButton: {
+      type: Boolean,
+      requried: true
+    }
+  } as any,
 
   data() {
     return {
@@ -91,6 +90,7 @@ export default defineComponent({
     
     applyFilter() {
       (this.$refs.filterModal as any).$el.dismiss('name', 'confirm')
+      this.searchPokemonsByFilter()
     }
   }
 })

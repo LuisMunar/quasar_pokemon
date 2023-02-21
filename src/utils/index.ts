@@ -6,7 +6,7 @@ export const convertNumberToArray = (numParam: number): number[] => {
   return Array(numParam).fill(0).map((_, t) => t)
 }
 
-export const getOffsetParamFormPakemonUrl = (stringParam: string): number => {
+export const getOffsetParamFormPakemonUrl = (stringParam: string | null): number => {
   if(!stringParam) {
     return 0
   }

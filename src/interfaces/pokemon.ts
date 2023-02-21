@@ -1,7 +1,7 @@
 export interface PokemonsResponseInterface {
   count: number
-  next: string
-  previous?: any
+  next: string | null
+  previous: string | null
   results: PokemonsInterface[]
 }
 
@@ -207,6 +207,16 @@ interface Ability2 {
 }
 
 interface Ability {
+  name: string
+  url: string
+}
+
+export interface MovesResponseInterface {
+  count: number
+  results: MoveInterface[]
+}
+
+export interface MoveInterface {
   name: string
   url: string
 }

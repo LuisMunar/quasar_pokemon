@@ -1,26 +1,30 @@
 <template>
-  <home-banner-search-input-stateless :handler-search-input="handlerSearchInput" :search-pokemon="searchPokemon" />
+  <home-banner-search-input-stateless :search-pokemon="searchPokemon" />
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 import { InputEventInterface } from '@/interfaces/nativeEvents'
 import HomeBannerSearchInputStateless from '@/components/Home/HomeBanner/HomeBannerSearchInput/HomeBannerSearchInputStateless.vue'
+import { usePokemonStore } from '@/store/pokemon'
 
-export default {
+export default defineComponent({
   name: 'HomeBannerSearchInputStateful',
 
   components: {
     HomeBannerSearchInputStateless
   },
 
-  methods: {
-    handlerSearchInput(e: InputEventInterface) {
-      console.log('HANDLENING... => ', e.target.value)
-    },
+  data: () => ({
+    pokemonState: usePokemonStore()
+  }),
 
+  methods: {
     searchPokemon(e: InputEventInterface) {
-      console.log('SEARCHING... => ', e.target.value)
+      const pokemonName = e.target.value
+      pokemonName === '' ? this.pokemonState.setPokemons() : this.pokemonState.setPokemonByName(pokemonName)
     }
   }
-}
+})
 </script>

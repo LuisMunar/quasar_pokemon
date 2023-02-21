@@ -1,6 +1,6 @@
 import { PromiseAllSettledInterface } from '@/interfaces/nativeEvents'
-import { PokemonsInterface, PokemonsResponseInterface } from '@/interfaces/pokemon'
-import { getPokemonsRepository, getPokemonRespository } from '@/repositories/PokemonRepository'
+import { MoveInterface, PokemonsInterface, PokemonsResponseInterface } from '@/interfaces/pokemon'
+import { getPokemonsRepository, getPokemonByUrlRespository, getPokemonByNameRespository, getMovesRepository } from '@/repositories/PokemonRepository'
 
 export const getPokemonsService = async (pageNumber: number): Promise<PokemonsResponseInterface> => {
   const result = await getPokemonsRepository(pageNumber*5)
@@ -13,7 +13,7 @@ export const getPokemonsService = async (pageNumber: number): Promise<PokemonsRe
   const primisesArray = []
   for (let i=0; i<results.length; i++) {
     const { url } = results[i]
-    primisesArray.push(getPokemonRespository(url))
+    primisesArray.push(getPokemonByUrlRespository(url))
   }
   const pokemonsResult = await Promise.allSettled(primisesArray) as PromiseAllSettledInterface<PokemonsInterface>[]
   const pokemonsFullData = pokemonsResult.map((i) => {
@@ -25,4 +25,29 @@ export const getPokemonsService = async (pageNumber: number): Promise<PokemonsRe
   })
 
   return { ...result, results: pokemonsFullData }
+}
+
+export const getPokemonByNameService = async (pokemonName: string): Promise<PokemonsResponseInterface> => {
+  const result = await getPokemonByNameRespository(pokemonName)
+
+  if(!result) {
+    return {
+      count: 0,
+      next: null,
+      previous: null,
+      results: []
+    }
+  }
+
+  return {
+    count: 1,
+    next: null,
+    previous: null,
+    results: [result]
+  }
+}
+
+export const getMovesService = async (): Promise<MoveInterface[]> => {
+  const { results } = await getMovesRepository()
+  return results
 }

@@ -1,7 +1,7 @@
 <template>
   <ion-item color="primary" class="d-flex d-align-items-center d-justify-content-center">
     <ion-label position="floating">Search pokemon</ion-label>
-    <ion-input @input="handlerSearchInput($event)" @keyup.enter="searchPokemon($event)"></ion-input>
+    <ion-input @keyup.enter="searchPokemon($event)"></ion-input>
     <ion-icon :icon="search" size="large" slot="end" color="light"></ion-icon>
   </ion-item>
 </template>
@@ -18,10 +18,6 @@ export default {
   },
 
   props: {
-    handlerSearchInput: {
-      type: Function,
-      required: true
-    },
     searchPokemon: {
       type: Function,
       required: true
