@@ -5,7 +5,7 @@
     :set-page-selected="pokemonState.setPageSelected"
     :previous-page="pokemonState.previousPage"
     :next-page="pokemonState.nexPage"
-    :quantity-pokemons="pokemonState.quantityPokemons"
+    :show-paginator="pokemonState.showPaginator"
   />
 </template>
 

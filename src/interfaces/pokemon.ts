@@ -217,6 +217,85 @@ export interface MovesResponseInterface {
 }
 
 export interface MoveInterface {
+  accuracy: number
+  contest_combos: Contestcombos
+  contest_effect: Contesteffect
+  contest_type: Usebefore
+  damage_class: Usebefore
+  effect_chance?: any
+  effect_changes: any[]
+  effect_entries: Effectentry[]
+  flavor_text_entries: Flavortextentry[]
+  generation: Usebefore
+  id: number
+  learned_by_pokemon: Usebefore[]
+  machines: any[]
+  meta: Meta
+  name: string
+  url: string
+  names: Name[]
+  past_values: any[]
+  power: number
+  pp: number
+  priority: number
+  stat_changes: any[]
+  super_contest_effect: Contesteffect
+  target: Usebefore
+  type: Usebefore
+}
+
+interface Name {
+  language: Usebefore
+  name: string
+}
+
+interface Meta {
+  ailment: Usebefore
+  ailment_chance: number
+  category: Usebefore
+  crit_rate: number
+  drain: number
+  flinch_chance: number
+  healing: number
+  max_hits?: any
+  max_turns?: any
+  min_hits?: any
+  min_turns?: any
+  stat_chance: number
+}
+
+interface Flavortextentry {
+  flavor_text: string
+  language: Usebefore
+  version_group: Usebefore
+}
+
+interface Effectentry {
+  effect: string
+  language: Usebefore
+  short_effect: string
+}
+
+interface Contesteffect {
+  url: string
+}
+
+interface Contestcombos {
+  normal: Normal
+  super: Super
+}
+
+interface Super {
+  use_after?: any
+  use_before?: any
+}
+
+interface Normal {
+  use_after?: any
+  use_before: Usebefore[]
+}
+
+interface Usebefore {
   name: string
   url: string
 }

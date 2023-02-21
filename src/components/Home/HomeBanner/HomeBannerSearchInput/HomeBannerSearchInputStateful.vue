@@ -23,7 +23,7 @@ export default defineComponent({
   methods: {
     searchPokemon(e: InputEventInterface) {
       const pokemonName = e.target.value
-      pokemonName === '' ? this.pokemonState.setPokemons() : this.pokemonState.setPokemonByName(pokemonName)
+      this.pokemonState.setPokemonByName(pokemonName)
     }
   }
 })

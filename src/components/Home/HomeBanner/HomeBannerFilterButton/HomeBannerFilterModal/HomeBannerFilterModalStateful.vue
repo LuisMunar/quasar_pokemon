@@ -1,10 +1,11 @@
 <template>
   <home-banner-filter-modal-stateless
-    :handler-movenment-number="handlerMovenmentNumber"
     :moves="pokemonState.getMoves"
-    :search-pokemons-by-filter="searchPokemonsByFilter"
-    :movement="movement"
+    :experiences="pokemonState.experiences"
+    :disabled-input-exp="disabledInputExp"
     :disabledButton="disabledButton"
+    :handler-selects="handlerSelects"
+    :search-pokemons-by-filter="searchPokemonsByFilter"
   />
 </template>
 
@@ -23,19 +24,23 @@ export default defineComponent({
   },
 
   data: (): any => ({
-    movement: '',
+    movenment: '',
+    experience: '',
     pokemonState: usePokemonStore(),
+    disabledInputExp: true,
     disabledButton: true
   }),
 
   methods: {
-    handlerMovenmentNumber(e: InputEventInterface): void {
+    handlerSelects(e: InputEventInterface): void {
       this[e.target.name] = e.target.value
+      this.disabledInputExp = this.movenment === '' || this.movenment === 'all'
       this.disabledButton = false
     },
 
     searchPokemonsByFilter() {
       this.disabledButton = true
+      this.pokemonState.setPokemonsByFilters(this.movenment, this.experience)
     }
   },
 

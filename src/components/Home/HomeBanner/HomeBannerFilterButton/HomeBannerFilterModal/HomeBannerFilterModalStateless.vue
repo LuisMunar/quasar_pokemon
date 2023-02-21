@@ -6,9 +6,16 @@
       <ion-title class="text-subtitle-one mt-1 mb-4">Filter pokemon list</ion-title>
 
       <ion-item color="tertiary" class="mb-2">
-        <ion-select :value="movement" name="movement" placeholder="Select movenment number" class="w-full" @ionChange="handlerMovenmentNumber($event)">
-          <ion-select-option value="">All</ion-select-option>
+        <ion-select name="movenment" placeholder="Select movenment number" class="w-full" @ionChange="handlerSelects($event)">
+          <ion-select-option value="all">All</ion-select-option>
           <ion-select-option v-for="(move, i) in moves" :key="i" :value="move.url">{{ move.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item color="tertiary" class="mb-2">
+        <ion-select :disabled="disabledInputExp" name="experience" placeholder="Select movenment number" class="w-full" @ionChange="handlerSelects($event)">
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option v-for="(exp, i) in experiences" :key="i" :value="exp+1">{{ exp+1 }}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -55,25 +62,29 @@ export default defineComponent({
   },
 
   props: {
-    handlerMovenmentNumber: {
+    moves: {
+      type: Array,
+      required: true
+    },
+    experiences: {
+      type: Array,
+      required: true
+    },
+    disabledInputExp: {
+      type: Boolean,
+      require: true
+    },
+    disabledButton: {
+      type: Boolean,
+      requried: true
+    },
+    handlerSelects: {
       type: Function,
       required: true
     },
     searchPokemonsByFilter: {
       type: Function,
       required: true
-    },
-    moves: {
-      type: Array,
-      required: true
-    },
-    movement: {
-      type: String,
-      required: true
-    },
-    disabledButton: {
-      type: Boolean,
-      requried: true
     }
   } as any,
 
